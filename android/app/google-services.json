@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "19094878392",
+    "project_id": "mentea-5816e",
+    "storage_bucket": "mentea-5816e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19094878392:android:0b3d8ccb8527e64922dc4d",
+        "android_client_info": {
+          "package_name": "com.example.mentea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19094878392-2cpf2pth6ktfs6jpmj1gvm5fq9u77j11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK_GRiknzjbtPkVnE1xdXCFrM4HbP9rn8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "19094878392-2cpf2pth6ktfs6jpmj1gvm5fq9u77j11.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
