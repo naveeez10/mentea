@@ -1,155 +1,108 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mentea/core/widgets/custom_textfield.dart';
+import 'package:mentea/features/auth/presentation/cubit/auth/auth_cubit.dart';
 
-class SignUpPage extends StatelessWidget {
+import '../../../../core/utils/constants.dart';
+
+@RoutePage()
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Container(
+    return Scaffold(body: BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+      return state.maybeMap(
+        orElse: () => Placeholder(),
+        loading: (s) => Center(
+          child: CircularProgressIndicator(
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
+        unauthenticated: (value) => SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 80,
+            ),
             child: Column(
-              children: <Widget>[
-                Container(
-                  height: 400,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/images/background.png'), fit: BoxFit.fill)),
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned(
-                        left: 30,
-                        width: 80,
-                        height: 200,
-                        child: FadeAnimation(
-                            1,
-                            Container(
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/images/light-1.png'))),
-                            )),
-                      ),
-                      Positioned(
-                        left: 140,
-                        width: 80,
-                        height: 150,
-                        child: FadeAnimation(
-                            1.3,
-                            Container(
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/images/light-2.png'))),
-                            )),
-                      ),
-                      Positioned(
-                        right: 40,
-                        top: 40,
-                        width: 80,
-                        height: 150,
-                        child: FadeAnimation(
-                            1.5,
-                            Container(
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/images/clock.png'))),
-                            )),
-                      ),
-                      Positioned(
-                        child: FadeAnimation(
-                            1.6,
-                            Container(
-                              margin: EdgeInsets.only(top: 50),
-                              child: Center(
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 40,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            )),
-                      )
-                    ],
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "Mentea",
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  "Finding Mentors is a Cup of Tea with Mentea!",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                // Image.asset("assets/RegisterPagePage.png"),
+                CustomTextfield(
+                  enabled: true,
+                  hintText: "Email",
+                  contentPadding: EdgeInsets.all(14),
+                  onChanged: (val) {},
+                  maxHeight: 100,
+                ),
+                // const SizedBox(
+                //   height: 15,
+                // ),
+                // CustomTextfield(
+                //   onChanged: (val) {},
+                // ),
+                // const SizedBox(height: 15),
+                // CustomTextfield(
+                //   onChanged: (val) {},
+                // ),
+                // const SizedBox(
+                //   height: 20,
+                // ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(),
+                    ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(30.0),
-                  child: Column(
-                    children: <Widget>[
-                      FadeAnimation(
-                          1.8,
-                          Container(
-                            padding: EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Color.fromRGBO(143, 148, 251, .2),
-                                      blurRadius: 20.0,
-                                      offset: Offset(0, 10))
-                                ]),
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  padding: EdgeInsets.all(8.0),
-                                  decoration: BoxDecoration(
-                                      border: Border(bottom: BorderSide(color: Colors.grey[100]))),
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: "Email or Phone number",
-                                        hintStyle: TextStyle(color: Colors.grey[400])),
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: "Password",
-                                        hintStyle: TextStyle(color: Colors.grey[400])),
-                                  ),
-                                )
-                              ],
-                            ),
-                          )),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      FadeAnimation(
-                          2,
-                          Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                gradient: LinearGradient(colors: [
-                                  Color.fromRGBO(143, 148, 251, 1),
-                                  Color.fromRGBO(143, 148, 251, .6),
-                                ])),
-                            child: Center(
-                              child: Text(
-                                "Login",
-                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          )),
-                      SizedBox(
-                        height: 70,
-                      ),
-                      FadeAnimation(
-                          1.5,
-                          Text(
-                            "Forgot Password?",
-                            style: TextStyle(color: Color.fromRGBO(143, 148, 251, 1)),
-                          )),
-                    ],
+                const SizedBox(height: 20),
+                Text.rich(TextSpan(
+                  text: "Already have an account?  ",
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 14,
                   ),
-                )
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: "Sign in here",
+                        style: const TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w800,
+                            decoration: TextDecoration.underline),
+                        recognizer: TapGestureRecognizer()..onTap = () {})
+                  ],
+                ))
               ],
             ),
           ),
-        ));
+        ),
+        authenticated: (value) => Placeholder(),
+      );
+    }));
   }
 }

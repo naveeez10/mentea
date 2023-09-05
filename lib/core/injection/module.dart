@@ -14,10 +14,6 @@ abstract class RegisterModule {
         ),
       );
 
-  @prod
-  @lazySingleton
-  Logger get loggerProd => Logger(printer: null);
-
   @test
   @lazySingleton
   Logger get loggerTest => Logger(printer: PrettyPrinter(lineLength: 80, methodCount: 1));

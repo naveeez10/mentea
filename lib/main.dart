@@ -11,7 +11,7 @@ import 'mentea_app.dart';
 
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp();
   await ScreenUtil.ensureScreenSize();
   configureDependencies(Environment.prod);
